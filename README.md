@@ -5,7 +5,7 @@ All-in-one solution to create peer-to-peer and full-mesh topology in the browser
 ### Features
 - WebSockets are used for all signalling events, and are handled out of the box (still requires back-end forwarding).
 - Simple API to send stereo audio tracks and JSON-format data channel messages.
-- Per-offer customization, which means requests can easily be sent to an individual peer, or the entire network.
+- Supports routing and flooding to peers out of the box.
 - Automatic handling of trickle ICE candidates.
 - Offer-Answer persistant track identification via custom SDP communication. 
 
