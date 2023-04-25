@@ -14,9 +14,12 @@ import mesh from 'meshy';
 
 ```js
 mesh.setConfiguration({
-  servers: {
-    websocket: '[your websocket server address]'
-  }
+  connection: {
+    iceServers: [{
+      urls: 'stun:stun.l.google.com:19302'
+    }]
+  },
+  channels: ['chat', 'edit'],
 });
 ```
 
@@ -58,6 +61,7 @@ mesh.open(DATA_CHANNEL)
 
     // Sending JSON data via RTCDataChannel
     mesh.send(DATA_CHANNEL, {
+      type: 'chat-message',
       test: 'some cool data in json format'
     });
   });
@@ -67,7 +71,11 @@ mesh.open(DATA_CHANNEL)
 import mesh, { Events } from 'meshy';
 
 mesh.on(Events.PEER_DATA_MESSAGE, (data) => {
-  // Process received data object
+  
+  // Process received 'chat-message' data object
+  if (data.type === 'chat-message'){
+    console.log(data.test);
+  }
 });
 
 ```

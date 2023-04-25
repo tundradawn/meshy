@@ -1,9 +1,3 @@
-export const DEFAULT_CONFIG = {
-  iceServers: [{
-    urls: 'stun:stun.l.google.com:19302'
-  }]
-};
-
 export const Events = {
 
   // Used to create the initial rtc mesh connection
@@ -39,14 +33,5 @@ export const SocketEvents = {
   PEER_MEDIA_ANSWER: 'webrtc:socket:peer:media_answer',
 
   // Used when destroying an individual peer
-  PEER_DISCONNECT: 'webrtc:socket:peer:disconnect',
-
-  // Used when destroying a session
-  SESSION_DISPOSE: 'webrtc:socket:session_dispose'
-};
-
-// TODO: Remove?
-export const Channels = {
-  PING: 'webrtc:channel:ping',
-  TRACK: 'webrtc:channel:track'
+  PEER_DISCONNECT: 'webrtc:socket:peer:disconnect'
 };
