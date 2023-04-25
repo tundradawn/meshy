@@ -1,4 +1,4 @@
-<img src="logo.svg" height="150px" />
+![meshy logo](logo.png)
 
 All-in-one solution to create peer-to-peer WebRTC-based mesh networks.
 
@@ -9,10 +9,10 @@ All-in-one solution to create peer-to-peer WebRTC-based mesh networks.
 
 
 ```js
-import mesh from 'meshy';
+import mesh, { Events } from 'meshy';
 ```
 
-Set configuration:
+Set configuration. The `connection` node equates to [`RTCPeerConnection`](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/RTCPeerConnection):
 ```js
 mesh.setConfiguration({
   connection: {
@@ -44,7 +44,7 @@ const track = stream.getTracks()[0];
 // Send track to entire network
 const { trackId, senders } = mesh.addTrack(track, stream);
 
-// Later... remove track from network
+// Later... remove track from network using generated senders
 mesh.removeTrack(senders);
 ```
 
@@ -53,7 +53,7 @@ Sending data with `RTCDataChannel`:
 mesh.open('chat-message')
   .then(() => {
 
-    // Sending JSON data via RTCDataChannel
+    // Once the data-channel is open, data can be sent freely
     mesh.send('chat-message', {
       message: 'hello world'
     });
@@ -62,16 +62,13 @@ mesh.open('chat-message')
 
 Receiving data with `RTCDataChannel`:
 ```js
-import mesh, { Events } from 'meshy';
-
 mesh.on(Events.PEER_DATA_MESSAGE, (data) => {
   
   // Process received 'chat-message' data object
-  if (data.channel === 'chat-message'){
+  if (data.channel === 'chat-message') {
     console.log(data.message);
   }
 });
-
 ```
 
 Disconnect the mesh network:
@@ -80,6 +77,32 @@ mesh.disconnect();
 ```
 
 ### Documentation
+
+#### API
+
+```js
+setConfiguration(config)
+getConfiguration(): Object
+setSocket(socket)
+getPeers(): [RTCPeerConnection]
+getPeerById(clientId): RTCPeerConnection
+connect()
+disconnect()
+on(eventKey, callback)
+off(eventKey, callback)
+
+// Mesh-wide functionality
+addTrack(track, stream): { trackId, senders }
+removeTrack(senders)
+send(channel, data)
+open(channel): [Promise]
+
+// Individual peer functionality
+to(clientId).addTrack(track, stream): { trackId, sender }
+to(clientId).removeTrack(senders)
+to(clientId).send(channel, data)
+to(clientId).open(channel): Promise
+```
 
 #### Constants
 ```js
@@ -124,32 +147,6 @@ SocketEvents = {
   // Used when destroying an individual peer
   PEER_DISCONNECT: 'webrtc:socket:peer:disconnect'
 }
-```
-
-#### API
-
-```js
-setConfiguration(config)
-getConfiguration(): Object
-setSocket(socket)
-getPeers(): [RTCPeerConnection]
-getPeerById(clientId): RTCPeerConnection
-connect()
-disconnect()
-on(eventKey, callback)
-off(eventKey, callback)
-
-// Mesh-wide functionality
-addTrack(track, stream): { trackId, senders }
-removeTrack(senders)
-send(channel, data)
-open(channel): Promise
-
-// Individual peer functionality
-to(clientId).addTrack(track, stream): { trackId, sender }
-to(clientId).removeTrack(senders)
-to(clientId).send(channel, data)
-to(clientId).open(channel): [Promise]
 ```
 
 ### License
