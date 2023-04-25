@@ -1,0 +1,42 @@
+{
+  "name": "meshy",
+  "version": "1.0.0",
+  "description": "All-in-one solution to create peer-to-peer WebRTC-based mesh networks.",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint src",
+    "build": "bash ./script-copy.sh && ./node_modules/.bin/babel src -d dist",
+    "postpublish": "cd dist && cp -r package.json .."
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jadnco/meshy.git"
+  },
+  "author": "Jaden Dessureault <hello@jaden.io>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jadnco/meshy/issues"
+  },
+  "homepage": "https://github.com/jadnco/meshy#readme",
+  "devDependencies": {
+    "@babel/cli": "7.8.4",
+    "@babel/core": "7.9.0",
+    "@babel/plugin-proposal-class-properties": "7.8.3",
+    "@babel/preset-env": "7.9.5",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  },
+  "dependencies": {
+    "lodash": "4.17.20",
+    "sdp-transform": "^2.14.1",
+    "uuid": "^8.3.2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "extends": "airbnb-base",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "comma-dangle": "off",
+    "padded-blocks": "off",
+    "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+    "lines-around-comment": ["error", {
+      "beforeBlockComment": true,
+      "beforeLineComment": true,
+      "allowBlockStart": true
+    }],
+    "consistent-return": "off",
+    "no-unused-vars": "warn",
+    "class-methods-use-this": "off"
+  },
+  "env": {
+    "browser": true
+  }
+}
