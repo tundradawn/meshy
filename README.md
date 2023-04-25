@@ -1,10 +1,9 @@
 ![meshy logo](logo.png)
 
-All-in-one solution to create full-mesh topology in the browser via WebRTC and WebSockets.
+All-in-one solution to create full-mesh peer-to-peer topology in the browser via WebRTC and WebSockets.
 
 ### Features
-- Peer-to-peer and full-mesh topology support.
-- WebSockets are used for all signalling events, and are handled out of the box.
+- WebSockets are used for all signalling events, and are handled out of the box (still requires back-end forwarding).
 - Simple API to send stereo audio tracks and JSON-format data channel messages.
 - Per-offer customization, which means requests can easily be sent to an individual peer, or the entire network.
 - Automatic handling of trickle ICE candidates.
