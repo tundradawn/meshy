@@ -5,14 +5,14 @@ All-in-one solution to create full-mesh topology in the browser via WebRTC and W
 ### Features
 - Peer-to-peer and full-mesh topology support.
 - WebSockets are used for all signalling events, and are handled out of the box.
-- Simple API to send audio tracks and JSON-format data channel messages.
-- Per-offer customization, which means information can easily be sent to an individual peer, or the entire network.
+- Simple API to send stereo audio tracks and JSON-format data channel messages.
+- Per-offer customization, which means requests can easily be sent to an individual peer, or the entire network.
 - Automatic handling of trickle ICE candidates.
 - Offer-Answer persistant track identification via custom SDP communication. 
 
 ### Getting Started
 
-
+Import the npm module (NOTE: This has not been published publicly yet):
 ```js
 import mesh, { Events } from 'meshy';
 ```
@@ -36,7 +36,7 @@ const socket = new WebSocket(/* Your WebSocket server address */);
 mesh.setSocket(socket);
 ```
 
-Connect the mesh network:
+Connect to the mesh network:
 ```js
 mesh.connect();
 ```
@@ -53,6 +53,23 @@ const { trackId, senders } = mesh.addTrack(track, stream);
 mesh.removeTrack(senders);
 ```
 
+Receiving and streaming audio tracks with `AudioContext`:
+
+```js
+mesh.on(Events.PEER_ADD_TRACK, ({ stream }) => {
+  const audioCtx = new AudioContext();
+  const source = audioCtx.createMediaStreamSource(stream);
+  const splitter = this._audioContext.createChannelSplitter(2);
+  const merger = this._audioContext.createChannelMerger(2);
+
+  // ... connect any additional audio nodes for custom modulation
+  
+  source.connect(splitter);
+  merger.connect(this._audioContext.destination);
+});
+
+```
+
 Sending data with `RTCDataChannel`:
 ```js
 mesh.open('chat-message')
@@ -60,7 +77,10 @@ mesh.open('chat-message')
 
     // Once the data-channel is open, data can be sent freely
     mesh.send('chat-message', {
-      message: 'hello world'
+      message: 'hello world',
+      more: {
+        a: 1
+      }
     });
   });
 ```
