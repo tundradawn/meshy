@@ -222,7 +222,7 @@ class PeerConnection {
            */
           media.ext.push({
             value: media.ext.length + 1,
-            uri: `meshy-track/${this._nextTrackId}`
+            uri: `meshy/track/${this._nextTrackId}`
           });
         }
 
