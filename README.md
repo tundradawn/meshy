@@ -155,6 +155,7 @@ Events = {
 }
 ```
 
+Your WebSocket server should forward the following events ([Learn more](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Signaling_and_video_calling)):
 ```js
 SocketEvents = {
 
