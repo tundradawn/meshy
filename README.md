@@ -1,6 +1,6 @@
 ![meshy logo](logo.png)
 
-All-in-one solution to create full-mesh peer-to-peer topology in the browser via WebRTC and WebSockets.
+All-in-one solution to create peer-to-peer and full-mesh topology in the browser via WebRTC & WebSockets.
 
 ### Features
 - WebSockets are used for all signalling events, and are handled out of the box (still requires back-end forwarding).
