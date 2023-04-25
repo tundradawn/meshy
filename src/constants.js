@@ -17,7 +17,7 @@ export const Events = {
   // Used to indicate when a peer receives or sends a data channel message
   PEER_DATA_MESSAGE: 'webrtc:peer:data_message',
 
-  // Used to indicate when a peer's media can start playing
+  // Used to indicate when a peer is disconnected
   PEER_DISCONNECT: 'webrtc:peer:disconnect'
 };
 

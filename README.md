@@ -1,9 +1,14 @@
 ![meshy logo](logo.png)
 
-All-in-one solution to create peer-to-peer WebRTC-based mesh networks.
+All-in-one solution to create full-mesh topology in the browser via WebRTC and WebSockets.
 
 ### Features
-- Track and data messages can easily be sent to an individual peer, or the entire network
+- Peer-to-peer and full-mesh topology support.
+- WebSockets are used for all signalling events, and are handled out of the box.
+- Simple API to send audio tracks and JSON-format data channel messages.
+- Per-offer customization, which means information can easily be sent to an individual peer, or the entire network.
+- Automatic handling of trickle ICE candidates.
+- Offer-Answer persistant track identification via custom SDP communication. 
 
 ### Getting Started
 
@@ -125,7 +130,7 @@ Events = {
   // Used to indicate when a peer receives or sends a data channel message
   PEER_DATA_MESSAGE: 'webrtc:peer:data_message',
 
-  // Used to indicate when a peer's media can start playing
+  // Used to indicate when a peer is disconnected
   PEER_DISCONNECT: 'webrtc:peer:disconnect'
 }
 ```
