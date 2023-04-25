@@ -105,7 +105,9 @@ Events = {
   // Used to indicate when a peer's media can start playing
   PEER_DISCONNECT: 'webrtc:peer:disconnect'
 }
+```
 
+```js
 SocketEvents = {
 
   // Used when ice candidate is initialized
@@ -122,6 +124,32 @@ SocketEvents = {
   // Used when destroying an individual peer
   PEER_DISCONNECT: 'webrtc:socket:peer:disconnect'
 }
+```
+
+#### API
+
+```js
+setConfiguration(config)
+getConfiguration(): Object
+setSocket(socket)
+getPeers(): [RTCPeerConnection]
+getPeerById(clientId): RTCPeerConnection
+connect()
+disconnect()
+on(eventKey, callback)
+off(eventKey, callback)
+
+// Mesh-wide functionality
+addTrack(track, stream): { trackId, senders }
+removeTrack(senders)
+send(channel, data)
+open(channel): Promise
+
+// Individual peer functionality
+to(clientId).addTrack(track, stream): { trackId, sender }
+to(clientId).removeTrack(senders)
+to(clientId).send(channel, data)
+to(clientId).open(channel): [Promise]
 ```
 
 ### License
