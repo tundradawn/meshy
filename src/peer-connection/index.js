@@ -243,6 +243,7 @@ class PeerConnection {
   _onDataMessage = (channel, _data) => {
     const data = {
       clientId: this.clientId,
+      channel,
       ..._data
     };
 
